@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Hello\nSign in!',
+                  'Create Your\nAccount',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -39,9 +41,16 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextField(
+                        controller: _nameController,
+                        decoration: InputDecoration(
+                          labelText: 'Full Name',
+                          suffixIcon: Icon(Icons.check),
+                        ),
+                      ),
+                      TextField(
                         controller: _emailController,
                         decoration: InputDecoration(
-                          labelText: 'Gmail',
+                          labelText: 'Phone or Gmail',
                           suffixIcon: Icon(Icons.check),
                         ),
                       ),
@@ -53,11 +62,12 @@ class LoginPage extends StatelessWidget {
                           suffixIcon: Icon(Icons.visibility_off),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text("Forgot password?"),
+                      TextField(
+                        controller: _confirmPasswordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Confirm Password',
+                          suffixIcon: Icon(Icons.visibility_off),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -71,7 +81,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         child: ElevatedButton(
                           onPressed: () {
-                            print('Email: ${_emailController.text}, Password: ${_passwordController.text}');
+                            // Handle sign-up logic
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
@@ -81,7 +91,7 @@ class LoginPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                          child: Text("SIGN IN", style: TextStyle(fontSize: 16)),
+                          child: Text("SIGN UP", style: TextStyle(fontSize: 16)),
                         ),
                       ),
                     ],
@@ -89,9 +99,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, '/signup'),
+                  onTap: () => Navigator.pop(context),
                   child: Text(
-                    "Don’t have account? Sign up",
+                    "Already have an account? Sign In",
                     style: TextStyle(color: Colors.white70),
                   ),
                 )
